@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ciclo extends Model
 {
-    
+
     protected $table = 'ciclos_avaliacao';
-    protected $fillable = ['nome', 'data', 'inicio','fim', 'status'];
+    protected $fillable = ['nome','inicio','fim', 'status'];
 
     public function avaliacoes()
     {

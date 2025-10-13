@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Avaliacao;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Avaliacao;
 
 class ListarAvaliacaoController extends Controller
 {
@@ -12,6 +13,12 @@ class ListarAvaliacaoController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
+        $avaliacoes = Avaliacao::with(['avaliador', 'avaliado', 'ciclo', 'modulo', 'criterios'])->get();
+
+        return response()->json([
+            'avaliacoes' => $avaliacoes
+        ]);
+
+
     }
 }

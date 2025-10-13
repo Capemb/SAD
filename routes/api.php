@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
-//use App\Http\Controllers\Api\Auth\LogoutController;
+use App\Http\Controllers\Api\Auth\LogoutController;
 //use App\Http\Controllers\Api\Auth\ListarPerfilController;
 //use App\Http\Controllers\Api\Auth\EscolherPerfilController;
 //use App\Http\Controllers\Api\Auth\AssociarPerfilController;
@@ -36,6 +36,7 @@ use App\Http\Controllers\Api\Ciclos\ActualizarStatusCicloController;
 use App\Http\Controllers\Api\Ciclos\ExcluirCicloController;
 use App\Http\Controllers\Api\Avaliacao\CalcularNotaController;
 use App\Http\Controllers\Api\Avaliacao\CriarAvaliacaoController;
+use App\Http\Controllers\Api\Avaliacao\ListarAvaliacaoController;
 
 
 
@@ -53,6 +54,7 @@ Route::middleware('auth:sanctum')->get('/permissions', ListarTodasPermissoesCont
 Route::middleware('auth:sanctum')->prefix('avaliacoes')->group(function(){
     Route::post('/criar', CriarAvaliacaoController::class);
     Route::get('/calcular/{id}',CalcularNotaController::class);
+    Route::get('/listar',ListarAvaliacaoController::class);
 });
 
 Route::post('/usuarios/login-colaborador', LoginCGController::class);
@@ -85,7 +87,7 @@ Route::prefix('auth')->group(function () {
     Route::post('/register', RegisterController::class);
    // Route::get('/perfis', ListarPerfilController::class)->middleware('auth:sanctum');
    // Route::post('/perfis/escolher', EscolherPerfilController::class)->middleware('auth:sanctum');
-   // Route::post('/logout', LogoutController::class)->middleware('auth:sanctum');
+     Route::post('/logout', LogoutController::class)->middleware('auth:sanctum');
    // Route::post('/perfis/associar', AssociarPerfilController::class)->middleware('auth:sanctum');
   //  Route::get('/perfis-disponiveis', PerfilDisponivelController::class)->middleware('auth:sanctum');
 });

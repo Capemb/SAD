@@ -46,7 +46,7 @@ class Avaliacao extends Model
 
    public function criterios()
     {
-        return $this->belongsToMany(AvaliacaoCriterio::class, 'avaliacao_criterios')
+        return $this->belongsToMany(Criterio::class, 'avaliacao_criterios')
                     ->withPivot('nota');
     }
 }

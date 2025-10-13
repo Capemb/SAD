@@ -48,8 +48,17 @@ return [
             'provider' => 'users',
         ],
         'rh' => [
-            'driver' => 'sactum',
+            'driver' => 'sanctum',
             'provider' => 'users',
+        ],
+        'api' => [
+            'driver' => 'sanctum',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+        'usuarios' => [
+            'driver' => 'session',
+            'provider' => 'usuarios',
         ],
     ],
 
