@@ -13,12 +13,11 @@ class ListarAvaliacaoController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $avaliacoes = Avaliacao::with(['avaliador', 'avaliado', 'ciclo', 'modulo', 'criterios'])->get();
+        $avaliacoes = Avaliacao::with(['avaliador', 'avaliado', 'ciclo', 'modulo'])->get();
 
         return response()->json([
             'avaliacoes' => $avaliacoes
         ]);
-
 
     }
 }

@@ -37,6 +37,8 @@ use App\Http\Controllers\Api\Ciclos\ExcluirCicloController;
 use App\Http\Controllers\Api\Avaliacao\CalcularNotaController;
 use App\Http\Controllers\Api\Avaliacao\CriarAvaliacaoController;
 use App\Http\Controllers\Api\Avaliacao\ListarAvaliacaoController;
+use App\Http\Controllers\Api\Avaliacao\AtualizarAvaliacaoController;
+use App\Http\Controllers\Api\Avaliacao\EliminarAvaliacaoController;
 
 
 
@@ -55,6 +57,8 @@ Route::middleware('auth:sanctum')->prefix('avaliacoes')->group(function(){
     Route::post('/criar', CriarAvaliacaoController::class);
     Route::get('/calcular/{id}',CalcularNotaController::class);
     Route::get('/listar',ListarAvaliacaoController::class);
+    Route::put('/{id}',AtualizarAvaliacaoController::class);
+    Route::delete('/{id}',EliminarAvaliacaoController::class);
 });
 
 Route::post('/usuarios/login-colaborador', LoginCGController::class);
