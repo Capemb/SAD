@@ -27,7 +27,7 @@ class LoginCGController extends Controller
             ]);
         }
 
-        $token = $usuario->createToken('auth_token')->plainTextToken;
+        $token = $usuario->createToken('auth_token_usuario')->plainTextToken;
 
         // Retorna o usuário com role
         return response()->json([

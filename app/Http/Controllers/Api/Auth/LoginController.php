@@ -12,6 +12,7 @@ use Illuminate\Validation\ValidationException;
 
 
 
+
 class LoginController extends Controller
 {
     /**
@@ -27,7 +28,7 @@ class LoginController extends Controller
             ]);
          }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('auth_token_rh')->plainTextToken;
 
         // resposta em json
         return response()->json([

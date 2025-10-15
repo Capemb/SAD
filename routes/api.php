@@ -21,6 +21,7 @@ use App\Http\Controllers\Api\ColaboradoresGestor\CriarCGController;
 use App\Http\Controllers\Api\ColaboradoresGestor\EliminarCGController;
 use App\Http\Controllers\Api\ColaboradoresGestor\ListarCGController;
 use App\Http\Controllers\Api\ColaboradoresGestor\LoginCGController;
+use App\Http\Controllers\Api\ColaboradoresGestor\LogoutCGController;
 
 
 use App\Http\Controllers\Api\Perfis\ListarPerfisController;
@@ -61,7 +62,10 @@ Route::middleware('auth:sanctum')->prefix('avaliacoes')->group(function(){
     Route::delete('/{id}',EliminarAvaliacaoController::class);
 });
 
+
 Route::post('/usuarios/login-colaborador', LoginCGController::class);
+Route::middleware('auth:sanctum')->post('/usuarios/logout', LogoutCGController::class);
+
 
 Route::middleware('auth:sanctum')->prefix('criterios')->group(function(){
    Route::get('/listar-criterio/{modulo_id}', ListarCriterioController::class );
