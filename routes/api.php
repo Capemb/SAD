@@ -40,6 +40,8 @@ use App\Http\Controllers\Api\Avaliacao\CriarAvaliacaoController;
 use App\Http\Controllers\Api\Avaliacao\ListarAvaliacaoController;
 use App\Http\Controllers\Api\Avaliacao\AtualizarAvaliacaoController;
 use App\Http\Controllers\Api\Avaliacao\EliminarAvaliacaoController;
+use App\Http\Controllers\Api\ColaboradoresGestor\ListarAvaliacoesGestorController;
+use App\Http\Controllers\Api\Avaliacao\AvaliacaoController;
 
 
 
@@ -60,6 +62,8 @@ Route::middleware('auth:sanctum')->prefix('avaliacoes')->group(function(){
     Route::get('/listar',ListarAvaliacaoController::class);
     Route::put('/{id}',AtualizarAvaliacaoController::class);
     Route::delete('/{id}',EliminarAvaliacaoController::class);
+    Route::get('/{id}', [AvaliacaoController::class, 'show']);
+    Route::post('/{id}/avaliar', [AvaliacaoController::class, 'avaliar']);
 });
 
 
@@ -81,8 +85,10 @@ Route::middleware('auth:sanctum')->prefix('usuarios')->group(function(){
         Route::delete('/eliminar-usuario/{id}',EliminarCGController::class);
         Route::post('/{user}/permissions', AtribuirPermissaoUsuarioController::class);
         Route::delete('/{user}/permissions/{permission}', RemoverPermissaoUsuarioController::class);
+        Route::get('/listar-avaliacoes-gestor', ListarAvaliacoesGestorController::class);
     //Route::delete('/{user}/permissoes/{permission}', App\Http\Controllers\Api\Usuarios\RemoverPermissaoPerfilController::class);
 });
+
 Route::middleware('auth:sanctum')->prefix('perfis')->group(function(){
     Route::get('/', ListarPerfisController::class);
     Route::post('perfis/{role}/permissions', AtribuirPermissaoPerfisController::class);

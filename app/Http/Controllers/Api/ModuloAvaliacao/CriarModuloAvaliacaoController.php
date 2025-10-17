@@ -13,14 +13,15 @@ class CriarModuloAvaliacaoController extends Controller
         $validated = $request->validate([
             'nome' => 'required|string|max:100',
             'descricao' => 'nullable|string',
+            'peso' => 'required|numeric|min:0|max:50',
             'ativo' => 'boolean',
         ]);
-        
+
         $modulo = ModuloAvaliacao::create($validated);
 
         return response()->json([
             'message' => 'Módulo de avaliação criado com sucesso!',
-            'modulo' => $modulo
+            'modulo' => $modulo,
         ], 201);
     }
 }
