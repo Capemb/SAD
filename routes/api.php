@@ -43,6 +43,7 @@ use App\Http\Controllers\Api\Avaliacao\EliminarAvaliacaoController;
 use App\Http\Controllers\Api\ColaboradoresGestor\ListarAvaliacoesGestorController;
 use App\Http\Controllers\Api\Avaliacao\AvaliacaoController;
 use App\Http\Controllers\Api\ModuloAvaliacao\EliminarModuloAvaliacaoController;
+use App\Http\Controllers\Api\Avaliacao\SalvarNotasController;
 
 
 
@@ -61,10 +62,12 @@ Route::middleware('auth:sanctum')->prefix('avaliacoes')->group(function(){
     Route::post('/criar', CriarAvaliacaoController::class);
     Route::get('/calcular/{id}',CalcularNotaController::class);
     Route::get('/listar',ListarAvaliacaoController::class);
+    Route::post('/salvar-notas', SalvarNotasController::class);
     Route::put('/{id}',AtualizarAvaliacaoController::class);
     Route::delete('/{id}',EliminarAvaliacaoController::class);
     Route::get('/{id}', [AvaliacaoController::class, 'show']);
     Route::post('/{id}/avaliar', [AvaliacaoController::class, 'avaliar']);
+
 });
 
 

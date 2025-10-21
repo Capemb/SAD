@@ -11,7 +11,8 @@ class AvaliacaoCriterio extends Model
     protected $fillable = [
         'avaliacao_id',
         'criterio_id',
-        'nota'
+        'nota',
+        'comentarios'
     ];
 
     public function avaliacao()
