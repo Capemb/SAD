@@ -9,7 +9,7 @@ class Criterio extends Model
     use HasFactory;
 
     protected $table = 'criterios';
-    protected $fillable = ['modulo_id', 'nome', 'peso'];
+    protected $fillable = ['modulo_id', 'nome'];
 
 
     public function modulo()

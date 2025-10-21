@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ModuloAvaliacao extends Model
 {
     protected $table = 'modulos_avaliacao';
-    protected $fillable = ['nome', 'descricao', 'ativo'];
+    protected $fillable = ['nome', 'descricao', 'ativo','peso'];
 
     // Define relationships if necessary
 

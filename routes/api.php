@@ -42,6 +42,7 @@ use App\Http\Controllers\Api\Avaliacao\AtualizarAvaliacaoController;
 use App\Http\Controllers\Api\Avaliacao\EliminarAvaliacaoController;
 use App\Http\Controllers\Api\ColaboradoresGestor\ListarAvaliacoesGestorController;
 use App\Http\Controllers\Api\Avaliacao\AvaliacaoController;
+use App\Http\Controllers\Api\ModuloAvaliacao\EliminarModuloAvaliacaoController;
 
 
 
@@ -111,6 +112,7 @@ Route::prefix('modulos-avaliacao')->middleware('auth:sanctum')->group(function (
     Route::post('/criar-modulo', CriarModuloAvaliacaoController::class);
     Route::get('/listar-modulo', ListarModuloAvaliacaoController::class);
     Route::get('mostrar-modulo/{id}', MostrarModuloAvaliacaoController::class);
+    Route::delete('/eliminar-modulo/{id}', EliminarModuloAvaliacaoController::class);
 });
 
 Route::prefix('ciclos')->middleware('auth:sanctum')->group(function(){

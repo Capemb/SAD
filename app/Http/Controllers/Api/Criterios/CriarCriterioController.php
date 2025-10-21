@@ -16,8 +16,8 @@ class CriarCriterioController extends Controller
     {
       $data = $request->validate([
             'modulo_id' => 'required|exists:modulos_avaliacao,id',
-            'nome' => 'required|string|max:255',
-            'peso' => 'required|numeric|min:0',
+            'nome' => 'nullable|string|max:255',
+            'peso' => 'nullable|numeric|min:0',
         ]);
 
         $criterio = Criterio::create($data);

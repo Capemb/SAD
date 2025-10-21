@@ -13,8 +13,8 @@ class CriarModuloAvaliacaoController extends Controller
         $validated = $request->validate([
             'nome' => 'required|string|max:100',
             'descricao' => 'nullable|string',
-            'peso' => 'required|numeric|min:0|max:50',
             'ativo' => 'boolean',
+            'peso' => 'required|numeric|min:0|max:50',
         ]);
 
         $modulo = ModuloAvaliacao::create($validated);
