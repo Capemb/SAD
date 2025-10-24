@@ -123,4 +123,13 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+        // config/app.php
+    'providers' => [
+        Barryvdh\DomPDF\ServiceProvider::class,
+    ],
+    'aliases' => [
+    'Pdf' => Barryvdh\DomPDF\Facade\Pdf::class,
+],
+
+
 ];

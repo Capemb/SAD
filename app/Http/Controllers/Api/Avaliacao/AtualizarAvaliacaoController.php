@@ -22,7 +22,7 @@ class AtualizarAvaliacaoController extends Controller
             'avaliado_id'  => 'sometimes|exists:usuarios,id',
             'modulo_id'    => 'sometimes|exists:modulos_avaliacao,id',
             'ciclo_id'     => 'nullable|exists:ciclos,id',
-            'status'       => 'nullable|string|in:pendente,em_progresso,concluido',
+            'status'       => 'nullable|string|in:pendente,em_progresso,concluida',
         ]);
 
         if ($validator->fails()) {
