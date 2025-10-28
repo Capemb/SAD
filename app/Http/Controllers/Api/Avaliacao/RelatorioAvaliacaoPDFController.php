@@ -4,29 +4,31 @@ namespace App\Http\Controllers\Api\Avaliacao;
 
 use App\Http\Controllers\Controller;
 use App\Models\Avaliacao;
-use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf; // <- se ainda não tiver, vamos instalar abaixo
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RelatorioAvaliacaoPDFController extends Controller
 {
-    public function __invoke(Request $request)
+    /**
+     * Gera e faz download do relatório geral em PDF
+     */
+    public function __invoke()
     {
-        // Buscar todas as avaliações concluídas com seus relacionamentos
-        $avaliacoes = Avaliacao::with(['avaliado', 'modulo'])
+        $avaliacoes = Avaliacao::with(['avaliado', 'avaliador', 'modulo', 'ciclo'])
+            ->whereNotNull('nota_final')
             ->where('status', 'concluida')
-            ->get();
+            ->get(['id', 'avaliado_id', 'avaliador_id', 'modulo_id', 'ciclo_id', 'nota_final']);
 
-        // Calcular a média geral de notas
-        $mediaGeral = $avaliacoes->avg('nota_final');
+        if ($avaliacoes->isEmpty()) {
+            return response()->json([
+                'message' => 'Nenhuma avaliação concluída encontrada.',
+            ], 404);
+        }
 
-        // Gerar o PDF usando uma view
-        $pdf = Pdf::loadView('pdf.relatorios.avaliacoes-geral', [
-            'avaliacoes' => $avaliacoes,
-            'mediaGeral' => $mediaGeral,
-        ]);
+        $mediaGeral = round($avaliacoes->avg('nota_final'), 2);
 
-        // Retornar o PDF para download
-        return $pdf->download('relatorio-avaliacoes-geral.pdf');
+        $pdf = Pdf::loadView('pdf.relatorios.avaliacoes', compact('avaliacoes', 'mediaGeral'))
+            ->setPaper('a4', 'portrait');
+
+        return $pdf->download('Relatorio_Geral_Avaliacoes.pdf');
     }
 }
-

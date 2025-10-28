@@ -45,7 +45,9 @@ use App\Http\Controllers\Api\Avaliacao\AvaliacaoController;
 use App\Http\Controllers\Api\ModuloAvaliacao\EliminarModuloAvaliacaoController;
 use App\Http\Controllers\Api\Avaliacao\SalvarNotasController;
 use App\Http\Controllers\Api\Avaliacao\RelatorioAvaliacaoController;
-
+use App\Http\Controllers\Api\Avaliacao\RelatorioAvaliacaoPDFController;
+use App\Http\Controllers\Api\Avaliacao\RelatorioColaboradorPDFController;
+use App\Http\Controllers\Api\Avaliacao\AvaliacaoColaboradorController;
 
 
 
@@ -66,9 +68,12 @@ Route::middleware('auth:sanctum')->prefix('avaliacoes')->group(function(){
     Route::post('/salvar-notas', SalvarNotasController::class);
     Route::put('/{id}',AtualizarAvaliacaoController::class);
     Route::delete('/{id}',EliminarAvaliacaoController::class);
-     Route::get('/relatorio-geral', RelatorioAvaliacaoController::class);
+    Route::get('/relatorio-geral', RelatorioAvaliacaoController::class);
     Route::get('/{id}', [AvaliacaoController::class, 'show']);
     Route::post('/{id}/avaliar', [AvaliacaoController::class, 'avaliar']);
+    Route::get('/relatorio/pdf', RelatorioAvaliacaoPDFController::class);
+    Route::get('/{id}/pdf', RelatorioColaboradorPDFController::class);
+    Route::get('/colaborador-avaliacao', [AvaliacaoColaboradorController::class, 'index']);
 
 });
 

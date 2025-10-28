@@ -30,4 +30,3 @@ class RelatorioAvaliacaoController extends Controller
         ], 200);
     }
 }
-
