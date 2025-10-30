@@ -49,7 +49,7 @@ use App\Http\Controllers\Api\Avaliacao\RelatorioAvaliacaoPDFController;
 use App\Http\Controllers\Api\Avaliacao\RelatorioColaboradorPDFController;
 use App\Http\Controllers\Api\Avaliacao\AvaliacaoColaboradorController;
 
-
+use App\Http\Controllers\Api\DashboardResumoController;
 
 
 
@@ -82,6 +82,8 @@ Route::post('/usuarios/login-colaborador', LoginCGController::class);
 Route::middleware('auth:sanctum')->post('/usuarios/logout', LogoutCGController::class);
 
 
+Route::middleware('auth:sanctum')->get('/dashboard/resumo', DashboardResumoController::class);
+
 Route::middleware('auth:sanctum')->prefix('criterios')->group(function(){
    Route::get('/listar-criterio/{modulo_id}', ListarCriterioController::class );
    Route::post('/criar-criterio',CriarCriterioController::class);
@@ -105,6 +107,7 @@ Route::middleware('auth:sanctum')->prefix('perfis')->group(function(){
     Route::post('perfis/{role}/permissions', AtribuirPermissaoPerfisController::class);
     Route::delete('perfis/{role}/permissions/{permission}', RemoverPermissaoRoleController::class);
 });
+
 
 
 Route::prefix('auth')->group(function () {

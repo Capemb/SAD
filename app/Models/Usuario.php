@@ -41,4 +41,9 @@ class Usuario extends Model
     {
         return $this->hasMany(Usuario::class, 'gestor_id');
     }
+
+    public function relatorios()
+    {
+        return $this->hasMany(Relatorio::class, 'gerado_por');
+    }
 }
